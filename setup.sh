@@ -1,11 +1,9 @@
 #/bin/bash
 
-GRACE_TIME="20s"
 REGION="us-east-1"
 STAGE="local"
 API_NAME="my-function"
 DOCKER_FILE="docker-compose.yaml"
-SERVERLESS_FILE="serverless.yaml"
 ENV_FILE="./.env"
 LOCALSTACK_ENDPOINT="http://localhost:4566"
 ROUTEPATH="hello"
