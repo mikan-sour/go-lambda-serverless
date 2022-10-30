@@ -7,8 +7,8 @@ provider:
     name: aws
     runtime: go1.x
     stage: ${opt:stage, 'local'}
-    environment:
-      NAME: ${env:NAME}
+    # environment:
+    #   API_NAME: ${env:API_NAME}
 custom:
   localstack:
     debug: true

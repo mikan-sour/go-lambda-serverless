@@ -1,12 +1,5 @@
 #/bin/bash
-
-REGION="us-east-1"
-STAGE="local"
-API_NAME="my-function"
-DOCKER_FILE="docker-compose.yaml"
-ENV_FILE="./.env"
-LOCALSTACK_ENDPOINT="http://localhost:4566"
-ROUTEPATH="hello"
+ENV_FILE=./.env
 
 function fail() {
     echo $2
@@ -34,6 +27,10 @@ echo "Deploy serverless"
 serverless deploy --stage local
 [ $? == 0 ] || fail 6 "Failed: SERVERLESS / serverless deploy"
 
-echo "Make sure you run at the endpoint above\n(endpoint: ${LOCALSTACK_ENDPOINT}/restapis/.../_user_request_/${ROUTEPATH})\n"
+URL="$(serverless info --verbose | grep ServiceEndpoint | sed s/ServiceEndpoint\:\ //g)"
+
+echo "\n\n"
+echo "Your endpoint: ${URL}/${AWS_ROUTEPATH}"
+echo "\n\n"
 echo -e "\nDeployment complete"
 

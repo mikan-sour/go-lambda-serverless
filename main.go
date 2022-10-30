@@ -19,7 +19,7 @@ type HelloLambdaResponse struct {
 func handle(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 
 	resp := &HelloLambdaResponse{
-		Greeting:    fmt.Sprintf("Hello %s!", os.Getenv("NAME")),
+		Greeting:    fmt.Sprintf("Hello %s!", os.Getenv("API_NAME")),
 		CurrentTime: time.Now().UTC(),
 	}
 
@@ -39,6 +39,5 @@ func handle(ctx context.Context, request events.APIGatewayProxyRequest) (events.
 }
 
 func main() {
-	fmt.Println("world, hello 1")
 	lambda.Start(handle)
 }
