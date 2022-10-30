@@ -1,0 +1,29 @@
+service: go-lambda
+useDotenv: true
+plugins:
+  - serverless-localstack
+  - serverless-dotenv-plugin
+provider:
+    name: aws
+    runtime: go1.x
+    stage: ${opt:stage, 'local'}
+    environment:
+      NAME: ${env:NAME}
+custom:
+  localstack:
+    debug: true
+    stages:
+      # list of stages for which the plugin should be enabled
+      - local
+package:
+  exclude:
+    - ./**
+  include:
+    - ./bin/**
+functions:
+  go-lambda:
+    handler: bin/main
+    events:
+      - http:
+          path: hello
+          method: get
